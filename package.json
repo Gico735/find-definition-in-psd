@@ -1,0 +1,27 @@
+{
+  "name": "find-definition-in-psd",
+  "version": "1.0.0",
+  "description": "find all subString in PSD",
+  "main": "index.js",
+  "bin": {
+    "find-definition": "findDefinition.js"
+  },
+  "dependencies": {
+    "psd": "^3.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node bin/findDefinition.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gico735/find-definition-in-psd.git"
+  },
+  "author": "Gregory Zdanovich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gico735/find-definition-in-psd/issues"
+  },
+  "homepage": "https://github.com/Gico735/find-definition-in-psd#readme"
+}
