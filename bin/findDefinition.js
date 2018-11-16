@@ -42,20 +42,29 @@ const chakeTypeOfLay = (el, file) => {
 
 const writeSlide = (layer, file) => {
   const text = layer.text.value.toLowerCase().replace(/[\r\u0003]/g, ' ')
-  let strRef = []
+  let strDef = []
   definition.map(el => {
-    if (~text.search(el + ' ')) {
-      strRef.push(text)
-      strRef.push(el)
+    if (text.search(el + ' ') !== -1) {
+      if (el === 'интерлейкины' && file === '03.psd') {
+        console.log(el, text.search(el + ' '), text)
+      }
+      strDef.push(text)
+      strDef.push(el)
+    }
+    if (el === 'интерлейкины' && file === '03.psd') {
+      console.log(strDef)
     }
   })
-  if (strRef.length === 0) {
+
+  if (strDef.length === 0) {
     return 0
   } else {
     file = file.replace('.psd', '')
-    return arrDefinitions[file] = strRef
+    if (arrDefinitions[file]) {
+      return arrDefinitions[file].push(...strDef)
+    }
+    return arrDefinitions[file] = strDef
   }
-
 }
 
 readDir()
