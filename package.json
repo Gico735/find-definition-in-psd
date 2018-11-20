@@ -4,7 +4,7 @@
   "description": "find all subString in PSD",
   "main": "index.js",
   "bin": {
-    "find-definition": "findDefinition.js"
+    "find-def": "findDefinition.js"
   },
   "dependencies": {
     "psd": "^3.2.0"

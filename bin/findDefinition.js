@@ -2,10 +2,12 @@
 const PSD = require('psd')
 const fs = require('fs')
 const path = require('path')
-const { definition } = require('../definiton.js')
 
 const arrPsd = []
 const callDir = process.env.PWD
+
+const { data } = require(`${callDir}/data.js`)
+
 let time = Date.now() / 1000
 let arrDefinitions = {}
 
@@ -43,14 +45,11 @@ const chakeTypeOfLay = (el, file) => {
 const writeSlide = (layer, file) => {
   const text = layer.text.value.toLowerCase().replace(/[\r\u0003]/g, ' ')
   let strDef = []
-  definition.map((el, i) => {
+  data.map((el, i) => {
     if (text.search(el + ' ') !== -1) {
       strDef.push(text)
       strDef.push(el)
       strDef.push(i)
-    }
-    if (el === 'интерлейкины' && file === '03.psd') {
-      console.log(strDef)
     }
   })
 
@@ -77,6 +76,6 @@ arrPsd.map((file) => {
 })
 const json = JSON.stringify(arrDefinitions)
 
-fs.writeFileSync(`${callDir}/definition.json`, json)
+fs.writeFileSync(`${callDir}/data.json`, json)
 time = Date.now() / 1000 - time
 console.log('Время выполнения = ', time.toFixed(2))
