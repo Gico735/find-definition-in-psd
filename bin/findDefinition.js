@@ -43,13 +43,11 @@ const chakeTypeOfLay = (el, file) => {
 const writeSlide = (layer, file) => {
   const text = layer.text.value.toLowerCase().replace(/[\r\u0003]/g, ' ')
   let strDef = []
-  definition.map(el => {
+  definition.map((el, i) => {
     if (text.search(el + ' ') !== -1) {
-      if (el === 'интерлейкины' && file === '03.psd') {
-        console.log(el, text.search(el + ' '), text)
-      }
       strDef.push(text)
       strDef.push(el)
+      strDef.push(i)
     }
     if (el === 'интерлейкины' && file === '03.psd') {
       console.log(strDef)
