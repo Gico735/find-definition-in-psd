@@ -8,15 +8,15 @@
 #example data.json#
 ```js
 {
-  "psd1": [  <-- name of psd
-    "trolololololo tro lol troro", <-- content where find data
-    "lol", <-- data
-    28, <-- index data
+--> name of psd  "psd1": [  
+--> content where find data    "trolololololo tro lol troro", 
+--> data    "lol", 
+--> index data    28, 
   ],
-  "psd2": [  <-- name of psd
-    "lolapex soeq troro", <-- content where find data
-    "apex", <-- data
-    13, <-- index data
+--> name of psd  "psd2": [  
+--> content where find data    "lolapex soeq troro", 
+--> data    "apex", 
+--> index data    13, 
   ],
 }
 
