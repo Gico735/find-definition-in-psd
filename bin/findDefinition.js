@@ -6,12 +6,9 @@ const path = require('path')
 const arrPsd = []
 const callDir = process.env.PWD
 
-const { data } = require(`${callDir}/data.js`)
-
+const { data } = require(`${callDir}/../data.js`)
 let time = Date.now() / 1000
 let arrDefinitions = {}
-
-
 
 const readDir = () => {
   console.log("Gotta Catch 'Em All")
@@ -23,8 +20,8 @@ const readDir = () => {
     }
   })
   if (arrPsd.length === 0) {
-    console.warn("\x1b[41m", "I don't see psd!")
-    console.log("\x1b[0m")
+    console.warn('\x1b[41m', "I don't see psd!")
+    console.log('\x1b[0m')
     process.exit(1)
   }
   return arrPsd
@@ -46,7 +43,10 @@ const writeSlide = (layer, file) => {
   const text = layer.text.value.toLowerCase().replace(/[\r\u0003]/g, ' ')
   let strDef = []
   data.map((el, i) => {
-    if (text.search(el + ' ') !== -1) {
+    if (
+      ~text.search(el.toLowerCase() + ' ') ||
+      ~text.search('[^а-яА-Я0-9_]' + el.toLowerCase() + '[^а-яА-Я0-9_]')
+    ) {
       strDef.push(text)
       strDef.push(el)
       strDef.push(i)
@@ -60,13 +60,13 @@ const writeSlide = (layer, file) => {
     if (arrDefinitions[file]) {
       return arrDefinitions[file].push(...strDef)
     }
-    return arrDefinitions[file] = strDef
+    return (arrDefinitions[file] = strDef)
   }
 }
 
 readDir()
 
-arrPsd.map((file) => {
+arrPsd.map(file => {
   const psd = PSD.fromFile(`${callDir}/${file}`)
   psd.parse()
   const child = psd.tree().export().children
